@@ -32,6 +32,11 @@ def index():
     return render_template("index.html", news=news)
 
 
+@app.route("/reviews")
+def reviews():
+    return render_template("reviews.html")
+
+
 @app.route('/register', methods=['GET', 'POST'])
 def reqister():
     form = RegisterForm()

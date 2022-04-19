@@ -41,5 +41,37 @@
     {% block content %}{% endblock %}
     {% block content_1 %}{% endblock %}
 </main>
+<h1> Отзывы </h1>
+<h2> Вы можете оставить отзыв или предложение </h2>
+
+
+<style>
+    #disqus_thread {
+        width: 80%;
+        margin-left: 7%;
+        margin-right: 7%;
+        margin-top: 3%;
+    }
+</style>
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+
+    var disqus_config = function () {
+    this.page.url = 'http://127.0.0.1:5000/';  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://blogs-and-news.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
 </body>
 </html>
