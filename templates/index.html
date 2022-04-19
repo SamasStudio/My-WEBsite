@@ -27,13 +27,7 @@
 {% if current_user.is_authenticated %}
     <a href="news" class="btn btn-secondary">Добавить новость</a>
 {% endif %}
-<style>
-    #disqus_thread {
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 0%;
-    }
-</style>
+
 <div id="disqus_thread"></div>
 <script>
     /**
@@ -52,5 +46,4 @@
     (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 {% endblock %}
