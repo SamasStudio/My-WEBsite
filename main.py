@@ -4,6 +4,7 @@ from data.users import User
 from data.news import News
 from flask import render_template
 from forms.user import RegisterForm
+from forms.account import AccountForm
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from forms.login import LoginForm
 from forms.news import NewsForm
@@ -60,6 +61,38 @@ def reqister():
         db_sess.commit()
         return redirect('/login')
     return render_template('register.html', title='Регистрация', form=form)
+
+
+@app.route(f'/account/<int:id>', methods=['GET', 'POST'])
+def account(id):
+    form = AccountForm()
+    if request.method == "GET":
+        db_sess = db_session.create_session()
+        user = db_sess.query(User).filter(User.id == current_user.id).first()
+        # Пробовал подставлять занчение так:
+        # id = current_user.id
+        if user:
+            form.email.data = user.email
+            form.name.data = user.name
+            form.about.data = user.about
+        else:
+            abort(404)
+
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        user = db_sess.query(User).filter(User.id == current_user.id).first()
+        # Пробовал подставлять занчение так:
+        # id = current_user.id
+        if user:
+            user.email = form.email.data
+            user.name = form.name.data
+            user.about = form.about.data
+            db_sess.commit()
+            return redirect(f'/account/{current_user.id}')
+        else:
+            abort(404)
+
+    return render_template('account.html', title='Аккаунт', form=form)
 
 
 @app.route("/cookie_test")
